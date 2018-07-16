@@ -72,6 +72,12 @@
     <ClCompile Include="CGetInputUtil.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CHatchUtil.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CDimensionUtil.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StdAfx.h">
@@ -126,6 +132,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="CGetInputUtil.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CHatchUtil.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CDimensionUtil.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

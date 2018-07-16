@@ -84,10 +84,12 @@
     <ClCompile Include="acrxEntryPoint.cpp" />
     <ClCompile Include="CBlockUtil.cpp" />
     <ClCompile Include="CCircleUtil.cpp" />
+    <ClCompile Include="CDimensionUtil.cpp" />
     <ClCompile Include="CDwgDatebaseUtil.cpp" />
     <ClCompile Include="CEntityUtil.cpp" />
     <ClCompile Include="CGetInputUtil.cpp" />
     <ClCompile Include="CGetPointUtil.cpp" />
+    <ClCompile Include="CHatchUtil.cpp" />
     <ClCompile Include="CIOUtil.cpp" />
     <ClCompile Include="CJig.cpp" />
     <ClCompile Include="CLayerUtil.cpp" />
@@ -109,10 +111,12 @@
   <ItemGroup>
     <ClInclude Include="CBlockUtil.h" />
     <ClInclude Include="CCircleUtil.h" />
+    <ClInclude Include="CDimensionUtil.h" />
     <ClInclude Include="CDwgDatebaseUtil.h" />
     <ClInclude Include="CEntityUtil.h" />
     <ClInclude Include="CGetInputUtil.h" />
     <ClInclude Include="CGetPointUtil.h" />
+    <ClInclude Include="CHatchUtil.h" />
     <ClInclude Include="CIOUtil.h" />
     <ClInclude Include="CJig.h" />
     <ClInclude Include="CLayerUtil.h" />
