@@ -21,7 +21,7 @@ void CIOUtil::ExportLayer(const TCHAR * FileName)
 	for (int i = 0; i < Layerids.length(); i++)
 	{
 		AcDbLayerTableRecord *pLayerTableRecord=NULL;
-		if (acdbOpenObject(pLayerTableRecord, Layerids[i]) == Acad::eOk)
+		if (acdbOpenObject(pLayerTableRecord, Layerids[i], AcDb::kForRead) == Acad::eOk)
 		{
 			std::vector<CString> line;
 			TCHAR* LayerName;
@@ -36,7 +36,7 @@ void CIOUtil::ExportLayer(const TCHAR * FileName)
 			line.push_back(strcolor);
 
 			AcDbLinetypeTableRecord *pLineTypeTableRecord = NULL;
-			if (acdbOpenObject(pLineTypeTableRecord, pLayerTableRecord->linetypeObjectId()) == Acad::eOk)
+			if (acdbOpenObject(pLineTypeTableRecord, pLayerTableRecord->linetypeObjectId(), AcDb::kForRead) == Acad::eOk)
 			{
 				TCHAR *LineTypeName;
 				pLineTypeTableRecord->getName(LineTypeName);
@@ -89,7 +89,7 @@ void CIOUtil::ImportLayer(const TCHAR * FileName)
 		pLayerTableRcord->setColor(LayerColor);
 
 		AcDbLinetypeTable *pLineTyepe = NULL;
-		acdbHostApplicationServices()->workingDatabase()->getLinetypeTable(pLineTyepe);
+		acdbHostApplicationServices()->workingDatabase()->getLinetypeTable(pLineTyepe, AcDb::kForWrite);
 		if (pLineTyepe->has(vecstrLayerLine[2]))
 		{
 			AcDbObjectId LineTypeid;

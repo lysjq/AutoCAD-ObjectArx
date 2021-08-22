@@ -35,7 +35,7 @@ AcDbObjectId CLayerUtil::GetLayerID(TCHAR * LayerName)
 {
 	assert(LayerName);
 	AcDbLayerTable *pLayerTable = NULL;
-	acdbHostApplicationServices()->workingDatabase()->getLayerTable(pLayerTable);
+	acdbHostApplicationServices()->workingDatabase()->getLayerTable(pLayerTable, AcDb::kForRead);
 	AcDbObjectId Layerid = AcDbObjectId::kNull;
 	if (pLayerTable->has(LayerName))
 	{
@@ -65,13 +65,13 @@ bool CLayerUtil::SetLayerColor(TCHAR * layerName, int colorindex)
 void CLayerUtil::GetAllLayerIDList(AcDbObjectIdArray & layerids)
 {
 	AcDbLayerTable *pLayerTable = NULL;
-	acdbHostApplicationServices()->workingDatabase()->getLayerTable(pLayerTable);
+	acdbHostApplicationServices()->workingDatabase()->getLayerTable(pLayerTable, AcDb::kForRead);
 	AcDbLayerTableIterator *it;
 	pLayerTable->newIterator(it);
 	for (it->start();!it->done();it->step())
 	{
 		AcDbLayerTableRecord *pLayerTableRecord = NULL;
-		if (it->getRecord(pLayerTableRecord) == Acad::eOk)
+		if (it->getRecord(pLayerTableRecord, AcDb::kForRead) == Acad::eOk)
 		{
 			layerids.append(pLayerTableRecord->objectId());
 			pLayerTableRecord->close();

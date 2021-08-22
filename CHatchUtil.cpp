@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CHatchUtil.h"
 #include "CDwgDatebaseUtil.h"
+#include "dbhatch.h"
 
 CHatchUtil::CHatchUtil()
 {
@@ -25,7 +26,7 @@ AcDbObjectId CHatchUtil::Add(const AcDbObjectIdArray & loopids, const TCHAR * pa
 
 	AcDbObjectId hatchid = CDwgDatebaseUtil::PostToModelSpace(pHatch);
 
-	if (acdbOpenObject(pHatch,hatchid)==Acad::eOk)
+	if (acdbOpenObject(pHatch,hatchid, AcDb::kForRead)==Acad::eOk)
 	{
 		AcDbObjectIdArray assocentids;
 		pHatch->getAssocObjIds(assocentids);

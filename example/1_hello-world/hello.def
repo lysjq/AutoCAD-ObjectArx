@@ -1,0 +1,6 @@
+LIBRARY hello1
+
+EXPORTS
+acrxEntryPoint    PRIVATE
+acrxGetApiVersion PRIVATE
+ 

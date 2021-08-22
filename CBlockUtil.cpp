@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "CBlockUtil.h"
 #include "CDwgDatebaseUtil.h"
+#include <geassign.h>
+#include <acutmem.h>
 CBlockUtil::CBlockUtil()
 {
 }
@@ -63,27 +65,28 @@ void CBlockUtil::InsertBlock()
 		return;
 	}
 	AcDbBlockTable *pBlockTable;
-	acdbHostApplicationServices()->workingDatabase()->getBlockTable(pBlockTable);
-	if (!pBlockTable->has(BlockName))
+	acdbHostApplicationServices()->workingDatabase()->getBlockTable(pBlockTable, AcDb::kForWrite);
+	CString strBlkName;
+	strBlkName.Format(TEXT("%S"), BlockName);
+	if (!pBlockTable->has(strBlkName))
 	{
 		acutPrintf(_T("\n当前图层中未包含指定名称的图块"));
 		pBlockTable->close();
 		return;
 	}
-	AcDbBlockTableRecord *pBlock;
-	pBlockTable->getAt(BlockName,pBlock);
 
 	ads_point pt;
 	if (acedGetPoint(NULL,_T("\n输入块参照的插入点"),pt)!=RTNORM)
 	{
-		pBlock->close();
 		pBlockTable->close();
 		return;
 	}
+	AcDbObjectId pBlockDefId;
+	pBlockTable->getAt(strBlkName,pBlockDefId);
 
 	AcGePoint3d InsertPoint = asPnt3d(pt);
 
-	AcDbBlockReference *pBlockRef = new AcDbBlockReference(InsertPoint, pBlock->objectId());
+	AcDbBlockReference *pBlockRef = new AcDbBlockReference(InsertPoint, pBlockDefId);
 
 	CDwgDatebaseUtil::PostToModelSpace(pBlockRef);
 }
@@ -101,9 +104,9 @@ bool CBlockUtil::GetAttributeValue(AcDbBlockReference *pBlockRef, TCHAR *Tag, Ac
 			if (pBlockRef->openAttribute(pAttribute,objectid,AcDb::kForRead)==Acad::eOk)
 			{
 				TCHAR *szTag = pAttribute->tag();
-				AcString TagName = Tag;
-				TagName.makeUpper();				//块参照中属性Tag永远都会是大写字母，因此传入的参数需要进行转换
-				if (TagName.compare(szTag)==0)
+				CString TagName = Tag;
+				TagName.MakeUpper();				//块参照中属性Tag永远都会是大写字母，因此传入的参数需要进行转换
+				if (TagName.Compare(szTag)==0)
 				{
 					TCHAR *szValue = pAttribute->textString();
 					Value = szValue;

@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "CViewUtil.h"
+#include "dbapserv.h"
+#include "AcDbLMgr.h"
 
 
 CViewUtil::CViewUtil()
@@ -160,7 +162,7 @@ void CViewUtil::SetCurrentUCS()
 		return;
 	}
 	AcDbUCSTable *pUCSTable = NULL;
-	acdbHostApplicationServices()->workingDatabase()->getUCSTable(pUCSTable);
+	acdbHostApplicationServices()->workingDatabase()->getUCSTable(pUCSTable, AcDb::kForRead);
 
 	if (pUCSTable->has(UCSName))
 	{

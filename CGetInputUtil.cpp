@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CGetInputUtil.h"
+#include "geassign.h"
 
 
 CGetInputUtil::CGetInputUtil()

@@ -69,7 +69,7 @@ AcDbObjectIdArray CDwgDatebaseUtil::GetAllEntityIDs(const TCHAR * layerName)
 	AcDbBlockTable *pBlockTable;
 	acdbHostApplicationServices()->workingDatabase()->getBlockTable(pBlockTable, AcDb::kForRead);
 	AcDbBlockTableRecord *PBlockTableRecoard;
-	pBlockTable->getAt(ACDB_MODEL_SPACE, PBlockTableRecoard);
+	pBlockTable->getAt(ACDB_MODEL_SPACE, PBlockTableRecoard, AcDb::kForRead);
 	pBlockTable->close();
 
 	AcDbBlockTableRecordIterator *it=NULL;

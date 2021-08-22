@@ -5,7 +5,7 @@ public:
 	CBlockUtil();
 	~CBlockUtil();
 
-	//创建一个块定义，（现状为一个带圈准星），返回块名称
+	//创建一个带属性的块定义，返回块名称
 	static void addMyBlockDefine();
 
 	//根据用户输入的块名和位置点插入块参照
